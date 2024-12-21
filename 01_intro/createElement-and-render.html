@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React 공식 사이트의 '시작하기'를 들어가서 문서에 있는 CDN를 복사해서 넣어준다. -->
+    <!-- CDN(Content Delivery Network)방식 사용: 기존 데이터 센터에서 각 나라의 데이터 센터에 특정시간(사용자가 거의 없는 시간)에 Content(데이터)를 delivery해서,
+                                                해당 나라는 해당 나라의 데이터 센터에서 데이터를 가져오도록 하는 방식 -->
+    <!-- Cross Origin Resource Sharing(CORS): 기본 브라우저는 SOP(Same origin policy: 기존에 사용하던 www.naver.com 부분이 변경되면 이상한 접근으로 막는 정책)를 통해
+                                                도메인이 변경되는 것을 막는데 이를 막지 않게 해주는 설정(다른 사이트의 리소스를 가져와서 사용하는 경우) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>    
+
+    <script>
+
+        /* React.createElement를 사용해 h1번 태그를 표현하는 엘리먼트를 만들 수 있다. 
+            첫번째 인자: 만들려는 엘리먼트의 타입을 문자열로 정의한다.
+            두번째 인자: 만드는 엘리먼트의 프로퍼티를 표현한다.
+            세번째 인자: 엘리먼트의 자식 노드를 표현한다.
+
+            리액트 엘리먼트는 단지 리액트에게 DOM 엘리먼트를 구성하는 방법을 알려주는 자바스크립트의 객체에 불과하다.
+            (실제 DOM이 아닌 가상 DOM의 개념)
+        */
+
+        // React는 객체 createElement는 객체 내부 메소드(api) => createElement(태그노드, 어트리뷰트 노드, 텍스트노드) : 태그를 만드는 메소드
+        // <h1 id="greeting">hello world  </h1>이 만들어짐
+        const greetingElement = React.createElement('h1', {id: 'greeting'}, 'hello world!!');
+        
+
+        /*
+            렌더링 과정(render())에서 리액트는 diffing을 통해 가상 DOM과 비교 후 차이점인 엘리먼트를 실제 DOM엘리먼트로 변환한다.
+        */
+
+        // ReactDOM는 객체 createRoot는 객체 내부 메소드(api) => createRoot는 내가 요소로 삼고싶은 것을 가져와서(getElemnetById) 루트로 삼고
+        // element를 render한 greetingElement가 <div id="root"> </div> 사이로 들어감
+        ReactDOM.createRoot(document.getElementById('root')).render(greetingElement);
+    </script>
+</body>
+</html>
